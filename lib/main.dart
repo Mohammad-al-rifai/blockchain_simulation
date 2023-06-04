@@ -1,5 +1,8 @@
 import 'package:blockchain_simulation/app/my_app.dart';
+import 'package:blockchain_simulation/logic/blockchain.dart';
 import 'package:flutter/material.dart';
+
+import 'logic/miner.dart';
 
 void main() {
   runApp(const MyApp());

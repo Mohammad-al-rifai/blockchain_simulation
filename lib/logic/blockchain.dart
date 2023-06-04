@@ -6,28 +6,28 @@ import 'package:crypto/crypto.dart' as crypto;
 import "package:hex/hex.dart";
 
 class Blockchain {
-  final List<Block> _chain;
+  final List<Block> chain;
   final List<Transaction> _currentTransactions;
 
   Blockchain()
-      : _chain = [],
+      : chain = [],
         _currentTransactions = [] {
     // create genesis block
     newBlock(100, "1");
   }
 
   Block newBlock(int proof, String? previousHash) {
-    previousHash ??= hash(_chain.last);
+    previousHash ??= hash(chain.last);
 
     var block = Block(
-      _chain.length,
+      chain.length,
       DateTime.now().millisecondsSinceEpoch,
       _currentTransactions,
       proof,
       previousHash,
     );
     _currentTransactions.clear(); // = [] ?
-    _chain.add(block);
+    chain.add(block);
     return block;
   }
 
@@ -43,7 +43,7 @@ class Blockchain {
   }
 
   Block get lastBlock {
-    return _chain.last;
+    return chain.last;
   }
 
   String hash(Block block) {
